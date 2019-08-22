@@ -7,6 +7,20 @@
     {{/link-to}}
 </div>
 
-{{#each this.model as |rentalUnit|}}
+{{!-- Lijst zonder filter - alles voor 'Building a Complex Component' hoofdstuk --}}
+{{!-- {{#each this.model as |rentalUnit|}}
     <RentalListing @rental={{rentalUnit}} />
-{{/each}}
+{{/each}} --}}
+
+<ListFilter
+    @filter={{action "filterByCity"}}
+    as |filteredResults|>
+    <ul>
+        <li class="results">
+            {{#each filteredResults as |rentalUnit|}}
+                <RentalListing @rental={{rentalUnit}} />
+            {{/each}}
+        </li>
+    </ul>
+</ListFilter>
+{{outlet}}
